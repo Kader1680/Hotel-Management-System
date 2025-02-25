@@ -86,7 +86,7 @@ const rooms = [
     name: "Standard Room",
     price: 80,
     type: 1,
-    available: true,
+    available: false,
     img: "/pics/room (10).jpeg",
   },
   
@@ -117,10 +117,13 @@ const Home = () => {
               <h3 className="text-lg font-bold text-gray-700">{room.name}</h3>
               <p className="text-gray-500">Type: {getType(room.type)}</p>
               <p className="text-gray-700 font-semibold">${room.price}/night</p>
-              <p className={`text-sm mt-2 font-semibold ${room.available ? "text-green-600" : "text-red-500"}`}>
+              <p className={`text-sm w-fit mt-2 font-semibold ps-2 pe-2 rounded-md ${room.available ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
                 {room.available ? "Available" : "Not Available"}
               </p>
-              <button className="mt-3 w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition">
+              <button className="mt-3 w-full px-4 py-2 text-white bg-[#FEA116] rounded-lg hover:bg-white border-2  hover:text-[#FEA116] hover:border-[#FEA116]  transition">
+                View Room
+              </button>
+              <button className="mt-3 w-full px-4 py-2 bg-blue-950 text-white border-2 border-blue-950 rounded-lg  hover:text-white transition">
                 Book Now
               </button>
             </div>

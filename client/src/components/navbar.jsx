@@ -34,8 +34,7 @@ const Navbar = () => {
                             <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
                             <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Rooms</a>
                             <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Bookings</a>
-                            <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
-                            <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
+                            <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Order</a>
                         </div>
                         <div className="flex items-center mt-4 lg:mt-0">
                             <button className="hidden mx-4 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400" aria-label="show notifications">
@@ -45,10 +44,12 @@ const Navbar = () => {
                             </button>
                             <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
                                 <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                                    <img src="/profile-placeholder.jpg" className="object-cover w-full h-full" alt="User Avatar" />
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGUlnk5qmUrC2UDttr8uSbA0UBR-v3SwNUTQ&s" className="object-cover w-full h-full" alt="User Avatar" />
                                 </div>
                             </button>
                         </div>
+                        <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
+
                     </div>
                 </div>
             </div>
