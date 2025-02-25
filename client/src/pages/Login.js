@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { registerUser } = useContext(AuthContext);
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -12,9 +13,23 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    await registerUser(formData);
+    try {
+      const response =  await fetch("http://127.0.0.1:8000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body : JSON.stringify(formData)
+      })
+      if (response.status == 200) {
+         navigate("/")
+      }
+    } catch (error) {
+      navigate("/login")
+
+      console.log(error)
+    }
+     
   };
 
   // blue #0F172B
@@ -35,7 +50,7 @@ const Login = () => {
           Login To Mario
         </h3>
   
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <div className="w-full mt-4">
             <input
               className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"

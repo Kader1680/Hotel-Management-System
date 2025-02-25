@@ -1,12 +1,13 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const { registerUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
-    role: "guest",
+    role: "guest",  
     email: "",
     password: "",
     phone_number: "",
@@ -16,9 +17,26 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await registerUser(formData);
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.status === 201) {
+        navigate("/"); // Redirect to home on success
+      } else {
+        navigate("/login")
+        console.error("Registration failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -31,14 +49,12 @@ const Register = () => {
 
           <h3 className="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">
             Create an account
-            Welcome! 
           </h3>
- 
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleRegister}>
             <div className="w-full mt-4">
               <input
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 mt-2 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600"
                 type="text"
                 name="first_name"
                 placeholder="First Name"
@@ -50,7 +66,7 @@ const Register = () => {
 
             <div className="w-full mt-4">
               <input
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 mt-2 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600"
                 type="text"
                 name="last_name"
                 placeholder="Last Name"
@@ -62,7 +78,7 @@ const Register = () => {
 
             <div className="w-full mt-4">
               <input
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 mt-2 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600"
                 type="email"
                 name="email"
                 placeholder="Email Address"
@@ -74,7 +90,7 @@ const Register = () => {
 
             <div className="w-full mt-4">
               <input
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 mt-2 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600"
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -86,7 +102,7 @@ const Register = () => {
 
             <div className="w-full mt-4">
               <input
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 mt-2 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600"
                 type="tel"
                 name="phone_number"
                 placeholder="Phone Number"
@@ -99,7 +115,7 @@ const Register = () => {
             <div className="flex items-center justify-between mt-4">
               <button
                 type="submit"
-                className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                className="px-6 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-400"
               >
                 Register
               </button>
@@ -107,11 +123,11 @@ const Register = () => {
           </form>
         </div>
 
-        <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
+        <div className="flex items-center justify-center py-4 bg-gray-50 dark:bg-gray-700">
           <span className="text-sm text-gray-600 dark:text-gray-200">
             Already have an account?
           </span>
-          <a href="/login" className="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">
+          <a href="/login" className="mx-2 text-sm font-bold text-blue-500 hover:underline">
             Login
           </a>
         </div>

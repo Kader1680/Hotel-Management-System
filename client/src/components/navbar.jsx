@@ -35,6 +35,7 @@ const Navbar = () => {
                             <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Rooms</a>
                             <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Bookings</a>
                             <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
+                            <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
                         </div>
                         <div className="flex items-center mt-4 lg:mt-0">
                             <button className="hidden mx-4 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400" aria-label="show notifications">

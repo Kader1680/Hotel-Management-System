@@ -34,14 +34,9 @@ class AuthController extends Controller
         'phone_number' => $request->phone_number,
     ]);
 
-    // $token = $user->createToken('auth_token')->plainTextToken;
-
-    return $user;
+     
+    return response()->json(['user created' => $user], 201);
     
-    // response()->json([
-    //     // 'token' => $token,
-    //     'user' => $user
-    // ], 201);
 }
 
     public function login(Request $request)
@@ -54,14 +49,13 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['Invalid credentials.'],
-            ]);
+            // throw ValidationException::withMessages([
+            //     'email' => ['Invalid credentials.'],
+            // ]);
+            return response()->json(['message' => 'Invalid Passoword or Email'], 401);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json(['token' => $token, 'user' => $user]);
+        return response()->json(['user' => $user], 200);
     }
 
     public function logout(Request $request)
