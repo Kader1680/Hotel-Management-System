@@ -11,7 +11,7 @@ use App\Http\Controllers\HomeController;
 // })->middleware('auth:sanctum');
 
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/rooms', [HomeController::class, 'index']);
 
 
 Route::post('/register', [AuthController::class, 'register']);
