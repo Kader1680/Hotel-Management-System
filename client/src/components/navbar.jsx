@@ -48,7 +48,7 @@ const Navbar = () => {
                                 </div>
                             </button>
                         </div>
-                        <a href="#" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
+                        <a href="/logout" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
 
                     </div>
                 </div>
